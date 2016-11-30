@@ -1,0 +1,9 @@
+
+# ==== Emoji Prefix ====
+# 📝  :memo: add files
+# 👍  :+1: add features
+# 🎉  :tada: add big features
+# 🐛  :bug: fix bugs
+# 🎨  :art: refactoring
+# 🔥  :fire: remove files or features
+# ✨  :sparkles: modify style or lint etc.
