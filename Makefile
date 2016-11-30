@@ -25,8 +25,8 @@ LD = gcc
 LDFLAGS =
 LIBS = -lm -lglpng -lglut32 -lglu32 -lopengl32
 
-$(TARGET): $(OBJS)
-	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
+$(TARGET): $(OBJS) $(ICON_OBJ)
+	$(LD) $(OBJS) $(ICON_OBJ) $(LDFLAGS) -o $(TARGET) $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CCFLAGS) -o $@ -c $<
@@ -39,4 +39,4 @@ $(ICON_OBJ) : $(ICON)
 all: clean $(TARGET)
 
 clean :
-	rm -f $(TARGET) $(OBJS) core *-
+	rm -f $(TARGET) $(OBJS) $(ICON_OBJ) core *-
