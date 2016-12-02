@@ -26,8 +26,28 @@ void DrawEllipse(int x, int y, int width, int height) {
     }
     glEnd();
 }
+void DrawEllipseWithLine(int x, int y, int width, int height, float weight) {
+    int i, n = POLYGON_ACCURACY;
+    double rad;
+    Vector2i point;
+    float oldWeight;
+
+    glGetFloatv(GL_LINE_WIDTH, &oldWeight);
+
+    glLineWidth(weight);
+    glBegin(GL_LINE_LOOP);
+    for ( i = 0; i < n; i++ ) {
+        rad = 2 * M_PI * ((double)i / n);
+        point.x = x + width  * cos(rad);
+        point.y = y + height * sin(rad);
+        glVertex2i(point.x, point.y);
+    }
+    glEnd();
 
 void DrawClockHand()
+    // restore previous value
+    glLineWidth(oldWeight);
+}
 {
 
 }
