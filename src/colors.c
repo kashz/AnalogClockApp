@@ -1,4 +1,9 @@
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
 #include <GL/glut.h>
+#endif
+
 #include "../include/colors.h"
 
 ColorRGB ConvertRGB(ColorRGB256 col)
