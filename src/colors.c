@@ -9,9 +9,9 @@
 ColorRGB ConvertRGB(ColorRGB256 col256)
 {
     ColorRGB col;
-    col.red   = col256.red   / 255;
-    col.green = col256.green / 255;
-    col.blue  = col256.blue  / 255;
+    col.red   = (double)col256.red   / 255;
+    col.green = (double)col256.green / 255;
+    col.blue  = (double)col256.blue  / 255;
 
     return col;
 }
