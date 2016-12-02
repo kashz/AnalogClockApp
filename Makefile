@@ -23,11 +23,11 @@ endif
 
 CC = gcc
 CCFLAGS = -Wall -I/usr/include/opengl
-CCFLAGS_MAC = -Wall
+CCFLAGS_MAC = -Wall -Wno-deprecated
 LD = gcc
 LDFLAGS =
 LIBS = -lm -lglpng -lglut32 -lglu32 -lopengl32
-LIBS_MAC = -framework GLUT -framework OpenGL -Wno-deprecated
+LIBS_MAC = -framework GLUT -framework OpenGL
 
 ifeq ($(OS),Windows_NT)
 TARGET=$(BIN_DIR)/app.exe
