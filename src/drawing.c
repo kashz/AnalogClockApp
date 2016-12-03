@@ -1,3 +1,8 @@
+/*
+ * Drawing Functions
+ * @auther Shunta Karasawa
+ */
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -44,10 +49,66 @@ void DrawEllipseWithLine(int x, int y, int width, int height, float weight) {
     }
     glEnd();
 
-void DrawClockHand()
     // restore previous value
     glLineWidth(oldWeight);
 }
-{
 
+void DrawClockHand(int width, int height, struct tm *t_time) {
+    Vector2i point;
+    ColorRGB256 lineColor, secHandColor;
+    int size, len;
+    double theta;
+
+    // Set Color
+    lineColor.red = 62;
+    lineColor.green = 63;
+    lineColor.blue = 79;
+    secHandColor.red = 239;
+    secHandColor.green = 96;
+    secHandColor.blue = 96;
+
+    // Decide Size
+    // Align to the smaller value.
+    size = (width < height) ? (width/2*0.9) : (height/2*0.9);
+
+    // Draw edge of clock
+    SetColorRGB256(lineColor);
+    DrawEllipseWithLine(width/2, height/2, size, size, 5);
+    DrawEllipse(width/2, height/2, size * 0.08, size * 0.08);
+
+    // Minutes
+    theta = (2 * M_PI / 3600) * (double)(60 * t_time->tm_min + t_time->tm_sec);
+    len = size * 0.9;
+    point.x = width/2  + (double)len * sin(theta);
+    point.y = height/2 - (double)len * cos(theta);
+    SetColorRGB256(lineColor);
+    glLineWidth(6);
+    glBegin(GL_LINES);
+    glVertex2i(width/2, height/2);
+    glVertex2i(point.x, point.y);
+    glEnd();
+
+    // Hour
+    theta = (2 * M_PI / 43200) * (double)(3600 * t_time->tm_hour + 60 * t_time->tm_min + t_time->tm_sec);
+    len = size * 0.7;
+    point.x = width/2  + (double)len * sin(theta);
+    point.y = height/2 - (double)len * cos(theta);
+    glLineWidth(6);
+    glBegin(GL_LINES);
+    glVertex2i(width/2, height/2);
+    glVertex2i(point.x, point.y);
+    glEnd();
+
+    // Seconds
+    len = size * 0.9;
+    theta = (2*M_PI/60) * (double)(t_time->tm_sec);
+    point.x = width/2  + (double)len * sin(theta);
+    point.y = height/2 - (double)len * cos(theta);
+    SetColorRGB256(secHandColor);
+    DrawEllipse(width/2, height/2, size * 0.05, size * 0.05);
+    glLineWidth(3);
+    glBegin(GL_LINES);
+    glVertex2i(width/2, height/2);
+    glVertex2i(point.x, point.y);
+    glEnd();
 }
