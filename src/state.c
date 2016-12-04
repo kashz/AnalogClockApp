@@ -22,7 +22,13 @@ void ReadOptions(int argc, char **argv) {
 
         switch (r) {
             case 'h':
-                printf("Usage: \n");
+                printf(
+                    "Usage: app [options] ...\n"
+                    "Options:\n"
+                    "\t-a, --all\t\tShow line of clock face on all time.\n"
+                    "\t-h, --help\t\tPrint this message and exit.\n"
+                    "\t-n, --night\t\tEnter night mode.\n"
+                );
                 exit(0);
                 break;
             case 'n':
