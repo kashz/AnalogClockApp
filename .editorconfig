@@ -11,3 +11,7 @@ indent_style = space
 [Makefile]
 indent_style = tab
 tab_width = 4
+
+[.txt]
+indent_style = tab
+tab_width = 4
