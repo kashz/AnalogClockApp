@@ -9,12 +9,17 @@
 #include <time.h>
 #include <math.h>
 #include "../include/drawing.h"
+#include "../include/state.h"
 
 void Display (void);
 void Reshape (int, int);
 void Timer(int value);
 
 int main(int argc, char **argv) {
+
+    InitState();
+    ReadOptions(argc, argv);
+
     glutInit(&argc, argv);
     glutInitWindowSize(300, 300);
     glutCreateWindow("Clock");
