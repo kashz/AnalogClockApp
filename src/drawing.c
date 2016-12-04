@@ -57,7 +57,7 @@ void DrawClockHand(int width, int height, struct tm *t_time) {
     Vector2i point;
     ColorRGB256 lineColor, secHandColor;
     int size, len;
-    double theta;
+    double theta, clockFaceIncrement;
 
     // Set Color
     lineColor.red = 62;
@@ -76,12 +76,30 @@ void DrawClockHand(int width, int height, struct tm *t_time) {
     DrawEllipseWithLine(width/2, height/2, size, size, 5);
     DrawEllipse(width/2, height/2, size * 0.08, size * 0.08);
 
+    // Draw face of clock
+    glLineWidth(6);
+    glBegin(GL_LINES);
+    if (state.clockFaceType == CLOCK_FACE_NORMAL)
+        clockFaceIncrement = (M_PI)/2;
+    else if (state.clockFaceType == CLOCK_FACE_ALL)
+        clockFaceIncrement = (M_PI)/6;
+    for ( theta = 0; theta < (2 * M_PI);theta += clockFaceIncrement ) {
+        len = size * 0.9;
+        point.x = width/2  + (double)len * sin(theta);
+        point.y = height/2 - (double)len * cos(theta);
+        glVertex2i(point.x, point.y);
+        len = size * 0.98;
+        point.x = width/2  + (double)len * sin(theta);
+        point.y = height/2 - (double)len * cos(theta);
+        glVertex2i(point.x, point.y);
+    }
+    glEnd();
+
     // Minutes
     theta = (2 * M_PI / 3600) * (double)(60 * t_time->tm_min + t_time->tm_sec);
     len = size * 0.9;
     point.x = width/2  + (double)len * sin(theta);
     point.y = height/2 - (double)len * cos(theta);
-    SetColorRGB256(lineColor);
     glLineWidth(6);
     glBegin(GL_LINES);
     glVertex2i(width/2, height/2);
