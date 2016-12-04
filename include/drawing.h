@@ -3,6 +3,7 @@
 
 #include <time.h>
 #include <stdlib.h>
+#include "../include/state.h"
 
 void DrawEllipse(int x, int y, int width, int height);
 void DrawEllipseWithLine(int x, int y, int width, int height, float weight);
