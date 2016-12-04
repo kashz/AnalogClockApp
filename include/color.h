@@ -17,7 +17,7 @@ struct _rgb {
 };
 typedef struct _rgb ColorRGB;
 
-ColorRGB ConvertR]GB(ColorRGB256 col);
+ColorRGB ConvertRGB(ColorRGB256 col);
 void SetColorRGB256(ColorRGB256 col);
 
 #endif /* __COLOR_H__ */
