@@ -6,8 +6,7 @@
 
 #include "../include/color.h"
 
-ColorRGB ConvertRGB(ColorRGB256 col256)
-{
+ColorRGB ConvertRGB(ColorRGB256 col256) {
     ColorRGB col;
     col.red   = (double)col256.red   / 255;
     col.green = (double)col256.green / 255;
@@ -15,8 +14,7 @@ ColorRGB ConvertRGB(ColorRGB256 col256)
 
     return col;
 }
-void SetColorRGB256(ColorRGB256 col256)
-{
+void SetColorRGB256(ColorRGB256 col256) {
     ColorRGB col;
     col = ConvertRGB(col256);
     glColor3d(col.red, col.green, col.blue);
