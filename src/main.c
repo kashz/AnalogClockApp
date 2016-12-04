@@ -30,8 +30,7 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-void Display (void)
-{
+void Display (void) {
     int width, height;
     time_t tm;
     struct tm *t_time;
@@ -49,8 +48,7 @@ void Display (void)
     // glutSwapBuffers();
 }
 
-void Reshape (int w, int h)
-{
+void Reshape (int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -59,8 +57,7 @@ void Reshape (int w, int h)
     glTranslated(0, -h, 0);
 }
 
-void Timer(int value)
-{
+void Timer(int value) {
     glutPostRedisplay();
     glutTimerFunc(500, Timer, 0);
 }
