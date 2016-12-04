@@ -22,7 +22,7 @@ CCFLAGS_MAC = -Wall -Wno-deprecated
 LD = gcc
 LDFLAGS =
 LIBS = -lm -lglpng -lglut32 -lglu32 -lopengl32
-LIBS_MAC = -framework GLUT -framework OpenGL
+LIBS_MAC = -framework GLUT -framework OpenGL -framework glpng
 
 
 # For Windows_NT
