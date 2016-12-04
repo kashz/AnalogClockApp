@@ -1,5 +1,17 @@
+/*
+ * color.h
+ * @auther Shunta Karasawa
+ */
+
 #ifndef __COLOR_H__
 #define __COLOR_H__
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
 
 // 0 - 255
 struct _rgb256 {

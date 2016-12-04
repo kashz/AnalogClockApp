@@ -1,5 +1,5 @@
 /*
- * Drawing Functions
+ * drawing.c
  * @auther Shunta Karasawa
  */
 
@@ -10,9 +10,12 @@
 #endif
 
 #include "../include/type.h"
+#include "../include/state.h"
 #include "../include/color.h"
 #include "../include/drawing.h"
 #include <math.h>
+#include <time.h>
+#include <stdlib.h>
 
 // Number of divisions for approximated polygons
 #define POLYGON_ACCURACY 100
@@ -53,7 +56,7 @@ void DrawEllipseWithLine(int x, int y, int width, int height, float weight) {
     glLineWidth(oldWeight);
 }
 
-void DrawClockHand(int width, int height, struct tm *t_time) {
+void DrawClock(int width, int height, struct tm *t_time) {
     Vector2i point;
     ColorRGB256 lineColor, secHandColor;
     int size, len;

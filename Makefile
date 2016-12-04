@@ -1,6 +1,6 @@
 #
 # Makefile
-# Auther: kash
+# Auther: Shunta Karasawa
 #
 
 SRC_DIR=./src
