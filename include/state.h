@@ -3,14 +3,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <string.h>
 
 struct _state {
     int mode;
+    int clockFaceType;
 };
 typedef struct _state State;
 
-#define MODE_NORMAL (1)
-#define MODE_NIGHT  (2)
+#define MODE_NORMAL (0)
+#define MODE_NIGHT  (1)
+
+#define CLOCK_FACE_NORMAL (0)
+#define CLOCK_FACE_ALL    (1)
 
 extern State state;
 
