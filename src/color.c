@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 #endif
 
-#include "../include/colors.h"
+#include "../include/color.h"
 
 ColorRGB ConvertRGB(ColorRGB256 col256)
 {

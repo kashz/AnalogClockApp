@@ -1,5 +1,5 @@
-#ifndef __COLORS_H__
-#define __COLORS_H__
+#ifndef __COLOR_H__
+#define __COLOR_H__
 
 // 0 - 255
 struct _rgb256 {
@@ -17,7 +17,7 @@ struct _rgb {
 };
 typedef struct _rgb ColorRGB;
 
-ColorRGB ConvertRGB(ColorRGB256 col);
+ColorRGB ConvertR]GB(ColorRGB256 col);
 void SetColorRGB256(ColorRGB256 col);
 
-#endif /* __COLORS_H__ */
+#endif /* __COLOR_H__ */

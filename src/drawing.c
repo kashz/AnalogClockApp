@@ -10,7 +10,7 @@
 #endif
 
 #include "../include/type.h"
-#include "../include/colors.h"
+#include "../include/color.h"
 #include "../include/drawing.h"
 #include <math.h>
 
