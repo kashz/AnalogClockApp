@@ -1,8 +1,7 @@
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
+/*
+ * color.c
+ * @auther Shunta Karasawa
+ */
 
 #include "../include/color.h"
 

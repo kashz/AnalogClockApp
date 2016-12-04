@@ -1,3 +1,8 @@
+/*
+ * main.c
+ * @auther Shunta Karasawa
+ */
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -47,7 +52,7 @@ void Display (void) {
     width = glutGet(GLUT_WINDOW_WIDTH);
     height = glutGet(GLUT_WINDOW_HEIGHT);
 
-    DrawClockHand(width, height, t_time);
+    DrawClock(width, height, t_time);
 
     glFlush();
     // glutSwapBuffers();
