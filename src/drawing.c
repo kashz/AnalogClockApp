@@ -125,7 +125,7 @@ void DrawClock(int width, int height, struct tm *t_time) {
     theta = (2*M_PI/60) * (double)(t_time->tm_sec);
     point.x = width/2  + (double)len * sin(theta);
     point.y = height/2 - (double)len * cos(theta);
-    SetColorRGB256(secHandColor);
+    SetGLColorRGB256(secHandColor);
     DrawEllipse(width/2, height/2, size * 0.05, size * 0.05);
     glLineWidth(3);
     glBegin(GL_LINES);

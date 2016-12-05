@@ -21,15 +21,17 @@ struct _rgb256 {
 };
 typedef struct _rgb256 ColorRGB256;
 
-// 0 - 1
-struct _rgb {
-    double red;
-    double green;
-    double blue;
+struct _rgba256 {
+    int red;
+    int green;
+    int blue;
+    int alpha;
 };
-typedef struct _rgb ColorRGB;
+typedef struct _rgba256 ColorRGBA256;
 
-ColorRGB ConvertRGB(ColorRGB256 col);
-void SetColorRGB256(ColorRGB256 col);
+ColorRGB256 SetColorRGB256(int red, int green, int blue);
+ColorRGBA256 SetColorRGBA256(int red, int green, int blue, int alpha);
+void SetGLColorRGB256(ColorRGB256 col);
+void SetGLColorRGBA256(ColorRGBA256 col);
 
 #endif /* __COLOR_H__ */
