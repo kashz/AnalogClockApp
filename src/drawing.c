@@ -75,23 +75,25 @@ void DrawClock(int width, int height, struct tm *t_time) {
     size = (width < height) ? (width/2*0.9) : (height/2*0.9);
 
     // Draw edge of clock
-    SetColorRGB256(lineColor);
+    SetGLColorRGB256(lineColor);
     DrawEllipseWithLine(width/2, height/2, size, size, 5);
     DrawEllipse(width/2, height/2, size * 0.08, size * 0.08);
 
     // Draw face of clock
     glLineWidth(6);
     glBegin(GL_LINES);
-    if (state.clockFaceType == CLOCK_FACE_NORMAL)
+    if (state.clockFaceType == CLOCK_FACE_NORMAL) {
         clockFaceIncrement = (M_PI)/2;
-    else if (state.clockFaceType == CLOCK_FACE_ALL)
+    }
+    else if (state.clockFaceType == CLOCK_FACE_ALL) {
         clockFaceIncrement = (M_PI)/6;
+    }
     for ( theta = 0; theta < (2 * M_PI);theta += clockFaceIncrement ) {
         len = size * 0.9;
         point.x = width/2  + (double)len * sin(theta);
         point.y = height/2 - (double)len * cos(theta);
         glVertex2i(point.x, point.y);
-        len = size * 0.98;
+        len = size;
         point.x = width/2  + (double)len * sin(theta);
         point.y = height/2 - (double)len * cos(theta);
         glVertex2i(point.x, point.y);
