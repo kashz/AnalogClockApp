@@ -15,8 +15,8 @@ typedef struct _state State;
 #define MODE_NORMAL (0)
 #define MODE_NIGHT  (1)
 
-#define CLOCK_FACE_NORMAL (0)
-#define CLOCK_FACE_ALL    (1)
+#define CLOCK_DIAL_NORMAL (0)
+#define CLOCK_DIAL_ALL    (1)
 
 
 extern State state;

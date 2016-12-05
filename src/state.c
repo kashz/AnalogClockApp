@@ -13,7 +13,7 @@ State state;
 
 void InitState() {
     state.mode = MODE_NORMAL;
-    state.clockFaceType = CLOCK_FACE_NORMAL;
+    state.clockFaceType = CLOCK_DIAL_NORMAL;
 }
 
 void ReadOptions(int argc, char **argv) {
@@ -45,7 +45,7 @@ void ReadOptions(int argc, char **argv) {
                 state.mode = MODE_NIGHT;
                 break;
             case 'a':
-                state.clockFaceType = CLOCK_FACE_ALL;
+                state.clockFaceType = CLOCK_DIAL_ALL;
                 break;
             case '?':
                 printf("illegal option %s\n", argv[optind]);
