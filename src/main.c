@@ -15,6 +15,7 @@
 #include <math.h>
 #include "../include/drawing.h"
 #include "../include/state.h"
+#include "../include/store.h"
 
 void Display (void);
 void Reshape (int, int);
@@ -23,6 +24,7 @@ void Timer(int value);
 int main(int argc, char **argv) {
 
     InitState();
+    InitStore();
     ReadOptions(argc, argv);
 
     glutInit(&argc, argv);
@@ -55,7 +57,6 @@ void Display (void) {
     DrawClock(width, height, t_time);
 
     glFlush();
-    // glutSwapBuffers();
 }
 
 void Reshape (int w, int h) {
