@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
 
     glutInit(&argc, argv);
     glutInitWindowSize(300, 300);
-    glutCreateWindow("Clock");
+    glutCreateWindow("Awesome Clock");
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
     glutTimerFunc(500, Timer, 0);

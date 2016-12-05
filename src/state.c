@@ -48,19 +48,12 @@ void ReadOptions(int argc, char **argv) {
                 state.clockFaceType = CLOCK_DIAL_ALL;
                 break;
             case '?':
-                printf("illegal option %s\n", argv[optind]);
+                printf("illegal option %s\n", argv[optind-1]);
+                exit(0);
                 break;
             default:
-                printf("getopt()が道\n");
+                printf("unknown error\n");
                 break;
         }
-    }
-    if (optind < argc) {
-        printf("argvの中でオプションとして解釈されなかった引数があります:");
-        while (optind < argc) {
-            printf("%s ", argv[optind]);
-            optind++;
-        }
-        printf("\n");
     }
 }
