@@ -11,6 +11,14 @@
 void DrawEllipse(int x, int y, int width, int height);
 void DrawEllipseWithLine(int x, int y, int width, int height, float weight);
 
-void DrawClock(int width, int height, struct tm *t_time);
+void GetDayOfWeekChar(char* str, int wday);
+
+void DrawDate(struct tm *t_time);
+void DrawTime(struct tm *t_time);
+
+void DrawClockHand(int length, float weight, double theta);
+
+void DrawSimpleClock(struct tm *t_time);
+void DrawAnalogClock(struct tm *t_time);
 
 #endif /* __DRAWING_H__ */

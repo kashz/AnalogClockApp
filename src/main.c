@@ -23,19 +23,19 @@ void Timer(int value);
 
 int main(int argc, char **argv) {
 
-    InitState();
     InitStore();
+    InitState();
     ReadOptions(argc, argv);
 
     glutInit(&argc, argv);
-    glutInitWindowSize(300, 300);
+    glutInitWindowSize(store.windowSize.x, store.windowSize.y);
     glutCreateWindow("Awesome Clock");
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
     glutTimerFunc(500, Timer, 0);
 
     glutInitDisplayMode(GLUT_RGBA);
-    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
 
     glutMainLoop();
 
@@ -43,7 +43,6 @@ int main(int argc, char **argv) {
 }
 
 void Display (void) {
-    int width, height;
     time_t tm;
     struct tm *t_time;
 
@@ -51,11 +50,14 @@ void Display (void) {
     t_time = localtime(&tm);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    width = glutGet(GLUT_WINDOW_WIDTH);
-    height = glutGet(GLUT_WINDOW_HEIGHT);
+    // update window size in store
+    store.windowSize.x = glutGet(GLUT_WINDOW_WIDTH);
+    store.windowSize.y = glutGet(GLUT_WINDOW_HEIGHT);
 
-    DrawClock(width, height, t_time);
-
+    if (state.clockType == CLOCK_TYPE_SIMPLE)
+        DrawSimpleClock(t_time);
+    else if (state.clockType == CLOCK_TYPE_FANCY)
+        DrawAnalogClock(t_time);
     glFlush();
 }
 
@@ -66,6 +68,8 @@ void Reshape (int w, int h) {
     gluOrtho2D(0, w, 0, h);
     glScaled(1, -1, 1);
     glTranslated(0, -h, 0);
+
+    printf("%dx%d\n", w, h);
 }
 
 void Timer(int value) {
