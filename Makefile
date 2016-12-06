@@ -26,7 +26,7 @@ LIBS_MAC = -framework GLUT -framework OpenGL
 
 # For Windows_NT
 ifeq ($(OS),Windows_NT)
-TARGET = clock.exe
+TARGET = j13411.exe
 ICON=$(MEDIA_DIR)/icon.ico
 ICON_OBJ=$(OBJ_DIR)/icon.o
 
@@ -43,7 +43,7 @@ endif
 
 # For macOS
 ifeq ($(UNAME_S),Darwin)
-TARGET = clock
+TARGET = j13411.exe
 
 $(TARGET) : $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS_MAC)
