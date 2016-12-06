@@ -38,7 +38,6 @@ int main(int argc, char **argv) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
     glutInitDisplayMode(GLUT_RGBA);
     glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
 
@@ -73,8 +72,6 @@ void Reshape (int w, int h) {
     gluOrtho2D(0, w, 0, h);
     glScaled(1, -1, 1);
     glTranslated(0, -h, 0);
-
-    printf("%dx%d\n", w, h);
 }
 
 void Timer(int value) {
@@ -86,5 +83,23 @@ void Keyboard(unsigned char key, int x, int y) {
     if (key == 'q' || key == 27) {
         printf("exit...\n");
         exit(0);
+    }
+    if (key == 'm') {
+        if (state.mode == MODE_NIGHT) {
+            EnterNormalMode();
+        }
+        else if (state.mode == MODE_NORMAL) {
+            EnterNightMode();
+        }
+        glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
+    }
+    if (key == 't') {
+        if (state.clockType == CLOCK_TYPE_SIMPLE) {
+            EnterFancyType();
+        }
+        else if (state.clockType == CLOCK_TYPE_FANCY){
+            EnterSimpleType();
+        }
+        glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
     }
 }
