@@ -5,7 +5,6 @@
 
 SRC_DIR=./src
 INC_DIR=./include
-BIN_DIR=./bin
 OBJ_DIR=./obj
 MEDIA_DIR=./media
 
@@ -21,13 +20,13 @@ CCFLAGS = -Wall -Wno-deprecated -I/usr/include/opengl
 CCFLAGS_MAC = -Wall -Wno-deprecated
 LD = gcc
 LDFLAGS =
-LIBS = -lm -lglpng -lglut32 -lglu32 -lopengl32
-LIBS_MAC = -framework GLUT -framework OpenGL -framework glpng
+LIBS = -lm -lglut32 -lglu32 -lopengl32
+LIBS_MAC = -framework GLUT -framework OpenGL
 
 
 # For Windows_NT
 ifeq ($(OS),Windows_NT)
-TARGET=$(BIN_DIR)/app.exe
+TARGET = clock.exe
 ICON=$(MEDIA_DIR)/icon.ico
 ICON_OBJ=$(OBJ_DIR)/icon.o
 
@@ -44,7 +43,7 @@ endif
 
 # For macOS
 ifeq ($(UNAME_S),Darwin)
-TARGET = $(BIN_DIR)/app
+TARGET = clock
 
 $(TARGET) : $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS_MAC)

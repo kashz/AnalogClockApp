@@ -14,8 +14,6 @@
 State state;
 
 void InitState() {
-    state.mode = MODE_NORMAL;
-    state.clockType = CLOCK_TYPE_FANCY;
     EnterNormalMode();
     EnterFancyType();
 }
@@ -46,38 +44,55 @@ void ReadOptions(int argc, char **argv) {
                 break;
             case 'n':
                 printf("option night\n");
-                state.mode = MODE_NIGHT;
                 EnterNightMode();
                 break;
             case 's':
-                state.clockType = CLOCK_TYPE_SIMPLE;
                 EnterSimpleType();
                 break;
             case '?':
-                printf("illegal option %s\n", argv[optind-1]);
+                printf("Illegal option\nTry `--help\'\n");
                 exit(0);
                 break;
             default:
-                printf("unknown error\n");
+                printf("Unknown error\n");
+                exit(0);
                 break;
         }
     }
 }
 void EnterFancyType() {
-    store.clockDialColor = SetColorRGB256(160, 160, 160);
+    state.clockType = CLOCK_TYPE_FANCY;
+    if (state.mode == MODE_NORMAL)
+        store.clockDialColor = SetColorRGB256(180, 180, 180);
+    else if (state.mode == MODE_NIGHT)
+        store.clockDialColor = SetColorRGB256(62, 63, 85);
 }
 void EnterSimpleType() {
-    store.clockDialColor = SetColorRGB256(62, 63, 85);
+    state.clockType = CLOCK_TYPE_SIMPLE;
+    if (state.mode == MODE_NORMAL)
+        store.clockDialColor = SetColorRGB256(62, 63, 85);
+    else if (state.mode == MODE_NIGHT)
+        store.clockDialColor = SetColorRGB256(62, 63, 85);
+}
+void ReEnterThisType() {
+    if (state.clockType == CLOCK_TYPE_SIMPLE)
+        EnterSimpleType();
+    else if (state.clockType == CLOCK_TYPE_FANCY)
+        EnterFancyType();
 }
 void EnterNormalMode() {
+    state.mode = MODE_NORMAL;
     store.clockHandColor = SetColorRGB256(62, 63, 85);
-    store.clockDialColor = SetColorRGB256(220, 220, 220);
+    store.clockDialColor = SetColorRGB256(160, 160, 160);
     store.textColor = SetColorRGB256(40, 40, 40);
     store.bgColor = SetColorRGB256(240, 240, 240);
+    ReEnterThisType();
 }
 void EnterNightMode() {
+    state.mode = MODE_NIGHT;
     store.clockDialColor = SetColorRGB256(62, 63, 85);
     store.clockHandColor = SetColorRGB256(150, 150, 150);
     store.textColor = SetColorRGB256(220, 220, 220);
     store.bgColor = SetColorRGB256(40, 40, 40);
+    ReEnterThisType();
 }

@@ -130,6 +130,9 @@ void DrawSimpleClock(struct tm *t_time) {
     int size, len;
     double theta, clockFaceIncrement;
 
+    // Display Clear
+    glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
+
     // Decide Size
     // Align to the smaller value.
     size = (store.windowSize.x < store.windowSize.y) ? (store.windowSize.x/2*0.9) : (store.windowSize.y/2*0.9);
@@ -138,7 +141,7 @@ void DrawSimpleClock(struct tm *t_time) {
     SetGLColorRGB256(store.clockDialColor);
     DrawEllipseWithLine(store.windowSize.x/2, store.windowSize.y/2, size, size, 5);
 
-    // Draw face of clock
+    // Draw dial of clock
     glLineWidth(6);
     glBegin(GL_LINES);
     clockFaceIncrement = (M_PI)/2;
@@ -161,7 +164,7 @@ void DrawSimpleClock(struct tm *t_time) {
     len = size * 0.9;
     DrawClockHand(len, 5.5, theta);
 
-    // Hour
+    // Hours
     theta = (2 * M_PI / 43200) * (double)(3600 * t_time->tm_hour + 60 * t_time->tm_min + t_time->tm_sec);
     len = size * 0.7;
     DrawClockHand(len, 6, theta);
@@ -182,16 +185,18 @@ void DrawAnalogClock(struct tm *t_time) {
     double theta, clockFaceIncrement;
     ColorRGBA256 afterColor = ConvertToRGBA256(store.clockSecColor, 255);
 
+    // Clear
+    glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
+
     // Decide Size
     // Align to the smaller value.
     size = (store.windowSize.x < store.windowSize.y) ? (store.windowSize.x/2*0.9) : (store.windowSize.y/2*0.9);
 
-    // Clear
-    glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
-
     // Draw edge of clock
     SetGLColorRGB256(store.clockDialColor);
     DrawEllipseWithLine(store.windowSize.x/2, store.windowSize.y/2, size, size, 5);
+
+    // Draw dial of clock
     clockFaceIncrement = (M_PI)/30;
     for ( theta = 0; theta < (2 * M_PI); theta += clockFaceIncrement ) {
         if (cnt % 5 == 0) {
@@ -210,7 +215,7 @@ void DrawAnalogClock(struct tm *t_time) {
         cnt++;
     }
 
-    // Afterimage of Color
+    // Afterimage of Color on dial
     for (i = 1; i < 20; i++) {
         afterSec = t_time->tm_sec - i;
         if (afterSec < 0) {

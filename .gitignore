@@ -32,9 +32,4 @@
 *.dSYM/
 *.su
 
-bin/
-!bin/.gitkeep
-
-obj/
-!bin/.gitkeep
-
+clock
