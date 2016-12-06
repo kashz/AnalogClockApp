@@ -50,29 +50,43 @@ void ReadOptions(int argc, char **argv) {
                 EnterSimpleType();
                 break;
             case '?':
-                printf("illegal option\nTry `clock --help\'");
+                printf("Illegal option\nTry `--help\'\n");
                 exit(0);
                 break;
             default:
-                printf("unknown error\n");
+                printf("Unknown error\n");
+                exit(0);
                 break;
         }
     }
 }
 void EnterFancyType() {
     state.clockType = CLOCK_TYPE_FANCY;
-    store.clockDialColor = SetColorRGB256(160, 160, 160);
+    if (state.mode == MODE_NORMAL)
+        store.clockDialColor = SetColorRGB256(180, 180, 180);
+    else if (state.mode == MODE_NIGHT)
+        store.clockDialColor = SetColorRGB256(62, 63, 85);
 }
 void EnterSimpleType() {
     state.clockType = CLOCK_TYPE_SIMPLE;
-    store.clockDialColor = SetColorRGB256(62, 63, 85);
+    if (state.mode == MODE_NORMAL)
+        store.clockDialColor = SetColorRGB256(62, 63, 85);
+    else if (state.mode == MODE_NIGHT)
+        store.clockDialColor = SetColorRGB256(62, 63, 85);
+}
+void ReEnterThisType() {
+    if (state.clockType == CLOCK_TYPE_SIMPLE)
+        EnterSimpleType();
+    else if (state.clockType == CLOCK_TYPE_FANCY)
+        EnterFancyType();
 }
 void EnterNormalMode() {
     state.mode = MODE_NORMAL;
     store.clockHandColor = SetColorRGB256(62, 63, 85);
-    store.clockDialColor = SetColorRGB256(220, 220, 220);
+    store.clockDialColor = SetColorRGB256(160, 160, 160);
     store.textColor = SetColorRGB256(40, 40, 40);
     store.bgColor = SetColorRGB256(240, 240, 240);
+    ReEnterThisType();
 }
 void EnterNightMode() {
     state.mode = MODE_NIGHT;
@@ -80,4 +94,5 @@ void EnterNightMode() {
     store.clockHandColor = SetColorRGB256(150, 150, 150);
     store.textColor = SetColorRGB256(220, 220, 220);
     store.bgColor = SetColorRGB256(40, 40, 40);
+    ReEnterThisType();
 }

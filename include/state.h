@@ -24,6 +24,7 @@ void InitState();
 void ReadOptions(int argc, char **argv);
 void EnterFancyType();
 void EnterSimpleType();
+void ReEnterThisType();
 void EnterNormalMode();
 void EnterNightMode();
 
