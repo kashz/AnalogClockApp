@@ -12,14 +12,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <math.h>
 #include "../include/drawing.h"
 #include "../include/state.h"
 #include "../include/store.h"
 
 void Display (void);
 void Reshape (int, int);
-void Timer(int value);
+void Timer (int value);
+void Keyboard(unsigned char key, int x, int y);
 
 int main(int argc, char **argv) {
 
@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
     glutCreateWindow("Awesome Clock");
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
+    glutKeyboardFunc(Keyboard);
     glutTimerFunc(500, Timer, 0);
 
     glEnable(GL_BLEND);
@@ -79,4 +80,11 @@ void Reshape (int w, int h) {
 void Timer(int value) {
     glutPostRedisplay();
     glutTimerFunc(500, Timer, 0);
+}
+
+void Keyboard(unsigned char key, int x, int y) {
+    if (key == 'q' || key == 27) {
+        printf("exit...\n");
+        exit(0);
+    }
 }
