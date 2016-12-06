@@ -52,7 +52,11 @@ void ReadOptions(int argc, char **argv) {
                 EnterSimpleType();
                 break;
             case '?':
-                printf("Illegal option\nTry `--help\'\n");
+                printf(
+                    "Illegal option\n"
+                    "Try `%s --help\'\n",
+                    argv[0]
+                );
                 exit(0);
                 break;
             default:
