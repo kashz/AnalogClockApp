@@ -34,11 +34,12 @@ void ReadOptions(int argc, char **argv) {
         switch (r) {
             case 'h':
                 printf(
-                    "Usage: app [options] ...\n"
+                    "Usage: %s [options]\n"
                     "Options:\n"
                     "\t-h, --help\t\tPrint this message and exit\n"
                     "\t-n, --night\t\tEnter night mode\n"
-                    "\t-s, --simple\t\tUse simple clock\n"
+                    "\t-s, --simple\t\tUse simple clock\n",
+                    argv[0]
                 );
                 exit(0);
                 break;
@@ -47,6 +48,7 @@ void ReadOptions(int argc, char **argv) {
                 EnterNightMode();
                 break;
             case 's':
+                printf("option simple\n");
                 EnterSimpleType();
                 break;
             case '?':
