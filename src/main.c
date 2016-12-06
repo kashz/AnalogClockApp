@@ -34,6 +34,10 @@ int main(int argc, char **argv) {
     glutReshapeFunc(Reshape);
     glutTimerFunc(500, Timer, 0);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
     glutInitDisplayMode(GLUT_RGBA);
     glClearColor(store.bgColor.red/255.0, store.bgColor.green/255.0, store.bgColor.blue/255.0, 1.0);
 

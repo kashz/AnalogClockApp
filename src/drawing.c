@@ -178,7 +178,9 @@ void DrawSimpleClock(struct tm *t_time) {
 void DrawAnalogClock(struct tm *t_time) {
     Vector2i point;
     int size, len, cnt = 0;
+    int i, afterSec;
     double theta, clockFaceIncrement;
+    ColorRGBA256 afterColor = ConvertToRGBA256(store.clockSecColor, 255);
 
     // Decide Size
     // Align to the smaller value.
@@ -191,8 +193,8 @@ void DrawAnalogClock(struct tm *t_time) {
     SetGLColorRGB256(store.clockDialColor);
     DrawEllipseWithLine(store.windowSize.x/2, store.windowSize.y/2, size, size, 5);
     clockFaceIncrement = (M_PI)/30;
-    for ( theta = 0; theta < (2 * M_PI);theta += clockFaceIncrement ) {
-        if (cnt%5 == 0) {
+    for ( theta = 0; theta < (2 * M_PI); theta += clockFaceIncrement ) {
+        if (cnt % 5 == 0) {
             glLineWidth(3);
             len = size * 0.95;
         } else {
@@ -206,6 +208,23 @@ void DrawAnalogClock(struct tm *t_time) {
         glVertex2i(point.x, point.y);
         glEnd();
         cnt++;
+    }
+
+    // Afterimage of Color
+    for (i = 1; i < 20; i++) {
+        afterSec = t_time->tm_sec - i;
+        if (afterSec < 0) {
+            afterSec += 60;
+        }
+        theta = (M_PI/30) * (double)(afterSec);
+        glColor4ub(afterColor.red, afterColor.green, afterColor.blue, afterColor.alpha-i*(255)/(20));
+        if (afterSec % 5 == 0) {
+            len = size * 0.95;
+            DrawClockHand(len, 3, theta);
+        } else {
+            len = size * 0.93;
+            DrawClockHand(len, 1, theta);
+        }
     }
 
     SetGLColorRGB256(store.bgColor);
