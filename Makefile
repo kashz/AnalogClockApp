@@ -16,7 +16,7 @@ SRCS=$(CFILES)
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 CC = gcc
-CCFLAGS = -Wall -Wno-deprecated -I/usr/include/opengl
+CCFLAGS = -Wall -Wno-deprecated -Wno-unused-function -I/usr/include/opengl
 CCFLAGS_MAC = -Wall -Wno-deprecated
 LD = gcc
 LDFLAGS =
