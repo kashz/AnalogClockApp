@@ -31,6 +31,7 @@ typedef struct _rgba256 ColorRGBA256;
 
 ColorRGB256 SetColorRGB256(int red, int green, int blue);
 ColorRGBA256 SetColorRGBA256(int red, int green, int blue, int alpha);
+ColorRGBA256 ConvertToRGBA256(ColorRGB256 col, int alpha);
 void SetGLColorRGB256(ColorRGB256 col);
 void SetGLColorRGBA256(ColorRGBA256 col);
 

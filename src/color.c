@@ -50,6 +50,9 @@ ColorRGBA256 SetColorRGBA256(int red, int green, int blue, int alpha) {
     }
     return color;
 }
+ColorRGBA256 ConvertToRGBA256(ColorRGB256 col, int alpha) {
+    return SetColorRGBA256(col.red, col.green, col.blue, alpha);
+}
 
 void SetGLColorRGB256(ColorRGB256 col) {
     glColor3ub(col.red, col.green, col.blue);
